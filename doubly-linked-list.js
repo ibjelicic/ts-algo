@@ -127,6 +127,32 @@ class DoublyLinkedList {
     }
 }
 
+function reverse(head) {
+    
+    // If the list is empty or has only one node,
+    // return the head as is
+    if (head === null || head.next === null)
+        return head;
+
+    let prevNode = null;
+    let currNode = head;
+
+    // Traverse the list and reverse the links
+    while (currNode !== null) {
+        
+        // Swap the next and prev pointers
+        prevNode = currNode.prev;
+        currNode.prev = currNode.next;
+        currNode.next = prevNode;
+
+        // Move to the next node in the original list 
+        // (which is now previous due to reversal)
+        currNode = currNode.prev;
+    }
+
+    return prevNode.prev;
+}
+
 var list = new DoublyLinkedList()
 list.push("Harry")
 list.push("Ron")
